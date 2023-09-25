@@ -5,6 +5,8 @@ import { WORDS } from "../../data";
 import { Input } from "./Input";
 import { PrevGuesses } from "./PrevGuesses";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import { HappyBanner, SadBanner } from "./Banners";
+import { Keyboard } from "../Keyboard/Keyboard";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -13,19 +15,28 @@ console.info({ answer });
 
 function Game() {
   const [guesses, setGuesses] = useState([]);
+  const [playerDidWin, setPlayerDidWin] = useState(false);
+
+  console.log({ playerDidWin });
 
   return (
     <div>
+      {guesses.length === NUM_OF_GUESSES_ALLOWED && !playerDidWin && (
+        <SadBanner answer={answer} />
+      )}
+      {playerDidWin && <HappyBanner guesses={guesses} />}
+
+      <PrevGuesses guesses={guesses} answer={answer} />
+
       <Input
+        disabled={playerDidWin || guesses.length === NUM_OF_GUESSES_ALLOWED}
+        guesses={guesses}
+        answer={answer}
         onSubmit={(newGuess) => {
-          // Prevent the user submitting more guesses once the max number of
-          // guesses is hit.
-          if (guesses.length < NUM_OF_GUESSES_ALLOWED) {
-            setGuesses([...guesses, newGuess]);
-          }
+          setPlayerDidWin(newGuess === answer);
+          setGuesses([...guesses, newGuess]);
         }}
       />
-      <PrevGuesses guesses={guesses} answer={answer} />
     </div>
   );
 }

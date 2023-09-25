@@ -196,6 +196,57 @@ h1 {
   border: 0;
 }
 
+.keyboard {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.keyboard-row {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  gap: 4px;
+}
+
+.keyboard-key {
+  padding: 1em 0.5em;
+  background-color: var(--color-gray-900);
+  cursor: pointer;
+}
+
+.keyboard-key[disabled] {
+  pointer-events: none;
+}
+
+.keyboard-key:hover {
+  background-color: color-mix(in srgb, var(--color-gray-900) 90%, black);
+}
+
+.keyboard-key:hover:active {
+  background-color: var(--color-gray-700);
+}
+
+.keyboard-key.correct {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: white;
+}
+
+.keyboard-key.incorrect {
+  background: var(--color-gray-300);
+  border-color: var(--color-gray-300);
+  color: white;
+}
+
+.keyboard-key.misplaced {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+  color: white;
+}
+
 /*
   Modal styles
 
