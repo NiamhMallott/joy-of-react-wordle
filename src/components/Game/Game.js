@@ -25,7 +25,7 @@ function Game() {
           }
         }}
       />
-      <PrevGuesses guesses={guesses} />
+      <PrevGuesses guesses={guesses} answer={answer} />
     </div>
   );
 }

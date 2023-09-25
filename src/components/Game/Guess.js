@@ -1,14 +1,15 @@
 import React from "react";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import { checkGuess } from "../../game-helpers";
 
-export function Guess({ guess }) {
-  const letters = guess.split("");
+export function Guess({ guess, answer }) {
+  const letters = checkGuess(guess, answer);
 
   return (
     <p className="guess">
-      {letters.map((letter, i) => {
+      {letters.map(({ letter, status }, i) => {
         return (
-          <span key={i} className="cell">
+          <span key={i} className={`cell ${status}`}>
             {letter}
           </span>
         );
