@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
@@ -10,22 +10,26 @@ import { Keyboard } from "../Keyboard/Keyboard";
 import { RestartButton } from "./Banners";
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
 
 function Game() {
+  const [answer, setAnswer] = useState(sample(WORDS));
   const [guesses, setGuesses] = useState([]);
   const [playerDidWin, setPlayerDidWin] = useState(false);
+  const restart = useCallback(() => {
+    setGuesses([]);
+    setPlayerDidWin(false);
+    setAnswer(sample(WORDS));
+  }, []);
 
-  console.log({ playerDidWin });
+  console.info({ answer });
 
   return (
     <div>
       {guesses.length === NUM_OF_GUESSES_ALLOWED && !playerDidWin && (
-        <SadBanner answer={answer} />
+        <SadBanner answer={answer} onRestart={restart} />
       )}
-      {playerDidWin && <HappyBanner guesses={guesses} />}
+      {playerDidWin && <HappyBanner guesses={guesses} onRestart={restart} />}
 
       <PrevGuesses guesses={guesses} answer={answer} />
 
