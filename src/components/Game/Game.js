@@ -2,8 +2,9 @@ import React, { useState } from "react";
 
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
-import { Guess } from "./Guess";
+import { Input } from "./Input";
 import { PrevGuesses } from "./PrevGuesses";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -15,9 +16,13 @@ function Game() {
 
   return (
     <div>
-      <Guess
+      <Input
         onSubmit={(newGuess) => {
-          setGuesses([...guesses, newGuess]);
+          // Prevent the user submitting more guesses once the max number of
+          // guesses is hit.
+          if (guesses.length < NUM_OF_GUESSES_ALLOWED) {
+            setGuesses([...guesses, newGuess]);
+          }
         }}
       />
       <PrevGuesses guesses={guesses} />

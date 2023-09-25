@@ -1,30 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-export function Guess({ onSubmit }) {
-  const [userInput, setUserInput] = useState("");
+export function Guess({ guess }) {
+  const letters = guess.split("");
 
   return (
-    <form
-      className="guess-input-wrapper"
-      onSubmit={(event) => {
-        event.preventDefault();
-        console.log(userInput);
-        onSubmit(userInput);
-        setUserInput("");
-      }}
-    >
-      <label htmlFor="guess-input">Enter guess:</label>
-      <input
-        id="guess-input"
-        type="text"
-        minLength={5}
-        maxLength={5}
-        pattern="[a-zA-Z]{5}"
-        value={userInput}
-        onChange={(event) => {
-          setUserInput(event.target.value.toUpperCase());
-        }}
-      />
-    </form>
+    <p className="guess">
+      {letters.map((letter, i) => {
+        return (
+          <span key={i} className="cell">
+            {letter}
+          </span>
+        );
+      })}
+    </p>
+  );
+}
+
+export function EmptyGuess() {
+  return (
+    <p className="guess">
+      <span className="cell"></span>
+      <span className="cell"></span>
+      <span className="cell"></span>
+      <span className="cell"></span>
+      <span className="cell"></span>
+    </p>
   );
 }

@@ -1,3 +1,4 @@
 export * from "./Game";
-export * from "./Guess";
+export * from "./Input";
+export * from "./PrevGuesses";
 export { default } from "./Game";
