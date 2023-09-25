@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export function Guesses() {
+export function Guess() {
   const [userInput, setUserInput] = useState("");
 
   return (

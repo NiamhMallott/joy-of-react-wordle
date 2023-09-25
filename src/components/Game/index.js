@@ -1,3 +1,3 @@
 export * from "./Game";
-export * from "./Guesses";
+export * from "./Guess";
 export { default } from "./Game";
