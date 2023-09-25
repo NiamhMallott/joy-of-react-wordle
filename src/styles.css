@@ -185,6 +185,24 @@ h1 {
   color: white;
 }
 
+.restart {
+  background-color: var(--color-gray-900);
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.restart:hover {
+  background-color: color-mix(in srgb, var(--color-gray-900) 90%, black);
+}
+
+.restart:hover:active {
+  background-color: var(--color-gray-700);
+}
+
 .visually-hidden {
   position: absolute;
   overflow: hidden;

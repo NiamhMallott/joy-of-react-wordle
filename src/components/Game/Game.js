@@ -7,6 +7,7 @@ import { PrevGuesses } from "./PrevGuesses";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { HappyBanner, SadBanner } from "./Banners";
 import { Keyboard } from "../Keyboard/Keyboard";
+import { RestartButton } from "./Banners";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
